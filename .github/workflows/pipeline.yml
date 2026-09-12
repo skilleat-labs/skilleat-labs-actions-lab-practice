@@ -19,12 +19,12 @@ jobs:
       - run: make BUILD_TYPE=${{ matrix.build_type }}
       - name: 결과물 이름에 정보 넣기
         run: |
-          SHA=$(echo "$" | cut -c1-7)
+          SHA=$(echo "${{ github.sha }}" | cut -c1-7)
           mv build/app "build/app-${{ matrix.build_type }}-$SHA"
       - uses: actions/upload-artifact@v4
         with:
           name: app-${{ matrix.build_type }}    # 매트릭스마다 이름이 달라야 함
-          path: build/app
+          path: build/app-*
   collect:
     needs: build
     runs-on: ubuntu-latest
