@@ -20,6 +20,7 @@ jobs:
       - run: echo "hello from A" > /tmp/probe.txt
       - run: cat /tmp/probe.txt        # 같은 job → 읽힘
   job_b:
+    needs: job_a
     runs-on: ubuntu-latest
     steps:
       - name: 다른 job이 만든 파일 읽어보기
