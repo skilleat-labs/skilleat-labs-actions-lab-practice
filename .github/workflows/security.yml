@@ -26,7 +26,8 @@ jobs:
   perm_fail:
     runs-on: ubuntu-latest
     permissions:
-      contents: read           # 이것만 명시 → 나머지는 전부 none
+      contents: read      
+      issues: write     # 이것만 명시 → 나머지는 전부 none
     steps:
       - env:
           GH_TOKEN: ${{ github.token }}
