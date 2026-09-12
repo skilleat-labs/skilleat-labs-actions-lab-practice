@@ -26,9 +26,13 @@ jobs:
   perm_fail:
     runs-on: ubuntu-latest
     permissions:
-      contents: read      
-      issues: write     # 이것만 명시 → 나머지는 전부 none
+      contents: read           # 이것만 명시 → 나머지는 전부 none
     steps:
       - env:
           GH_TOKEN: ${{ github.token }}
-        run: gh label create lab4-test --repo ${{ github.repository }} || echo "권한 부족으로 실패"
+        run: |
+          if gh label create lab4-test --repo ${{ github.repository }} --force; then
+            echo "✅ 라벨 생성 성공"
+          else
+            echo "❌ 권한 부족으로 실패"
+          fi
