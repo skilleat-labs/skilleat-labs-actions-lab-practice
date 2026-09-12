@@ -16,10 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - run: make test
-      - run: make BUILD_TYPE=$
+      - run: make BUILD_TYPE=${{ matrix.build_type }}
       - uses: actions/upload-artifact@v4
         with:
-          name: app-$    # 매트릭스마다 이름이 달라야 함
+          name: app-${{ matrix.build_type }}    # 매트릭스마다 이름이 달라야 함
           path: build/app
   collect:
     needs: build
