@@ -4,11 +4,19 @@ on:
     paths:
       - 'src/**'
   workflow_dispatch:
-
+    inputs:
+      build_type:
+        description: 빌드 타입
+        type: choice
+        options:
+          - Release
+          - Debug
+        default: Release
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "빌드 타입은 $"
       - uses: actions/checkout@v5
       - run: echo "빌드 실행됨 (src가 바뀜)"
       - name: 일부러 실패
