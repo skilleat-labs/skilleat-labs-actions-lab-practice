@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: 시크릿을 일부러 출력
         env:
-          TOK: $
+          TOK: ${{ secrets.DEMO_TOKEN}}
         run: |
           echo "그대로 출력: $TOK"          # → *** 로 가려짐
           echo "변형 출력:"
