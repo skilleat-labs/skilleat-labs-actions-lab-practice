@@ -40,5 +40,19 @@ jobs:
     needs: collect
     runs-on: ubuntu-latest
     environment: production        # ← 여기서 승인 대기
+    permissions:
+      contents: write            # 릴리스 생성 권한 (없으면 403)
     steps:
-      - run: echo "승인이 나야 이 줄이 실행된다"
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: app-*
+          path: dist
+          merge-multiple: true
+      - name: Release 생성
+        env:
+          GH_TOKEN: $
+        run: |
+          gh release create "v0.${{ github.run_number }}" \
+            --title "빌드 v0.${{ github.run_number }}" \
+            --generate-notes \
+            dist/*
