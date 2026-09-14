@@ -1,0 +1,9 @@
+name: Branch test
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  show:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "브랜치=${{ github.ref_name }} 이벤트=${{ github.event_name }}"
