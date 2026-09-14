@@ -14,6 +14,14 @@ jobs:
 
       - name: checkout 후에 작업 폴더 보기
         run: ls -la
+      
+      - name: 러너 정보 
+        run: | 
+          echo "러너 이름: $RUNNER_NAME"
+          echo "러너 OS: ${{ runner.os }}" ($(uname -s) $(uname -m))
+          echo "러너 CPU: ${{ runner.arch }}"
+          echo "| 디스크 여유 | $(df -h / | awk 'NR==2{print $4}') |"
+          } >> "$GITHUB_STEP_SUMMARY"
   job_a:
     runs-on: ubuntu-latest
     steps:
