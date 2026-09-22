@@ -1,0 +1,26 @@
+name: 도전 1-2 Windows 러너
+on:
+  workflow_dispatch:
+
+jobs:
+  inspect-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - run: ls -la
+      - uses: actions/checkout@v7
+      - run: ls -la
+      - run: echo "작업 폴더 = $GITHUB_WORKSPACE"
+
+  inspect-windows:
+    runs-on: windows-latest
+    steps:
+      - name: 기본 셸(pwsh)에서 ls -la      # 이 step은 실패하거나 다르게 나옴
+        continue-on-error: true
+        run: ls -la
+      - uses: actions/checkout@v7
+      - name: bash로 바꾸면 Linux와 같게
+        shell: bash
+        run: ls -la
+      - name: Windows 경로 확인
+        shell: bash
+        run: echo "작업 폴더 = $GITHUB_WORKSPACE"
