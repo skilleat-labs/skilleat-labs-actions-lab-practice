@@ -29,6 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read           # 이것만 명시 → 나머지는 전부 none
+      issues: write            # issues 권한만 write → 라벨 생성 가능
     steps:
       - env:
           GH_TOKEN: ${{ github.token }}
