@@ -1,4 +1,4 @@
-name: Lab1 첫 워크플로
+name: Lab1 첫 워크플로2
 on:
   workflow_dispatch:        # Actions 탭에서 수동 실행
 jobs:
