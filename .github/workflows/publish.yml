@@ -23,8 +23,8 @@ jobs:
           path: dist
       - name: Azure Blob에 업로드
         env:
-          ACCT: ${{ vars.AZ_STORAGE_ACCOUNT }}
-          SAS: ${{ secrets.AZ_SAS }}
+          ACCT: ${{ vars.AZ_STORAGE_ACCOUNT1 }}
+          SAS: ${{ secrets.AZ_SAS1 }}
           VERSION: v0.${{ github.run_number }}
         run: |
           az storage blob upload-batch \
@@ -33,8 +33,8 @@ jobs:
             --source dist
       - name: 올라간 파일 목록을 Summary에
         env:
-          ACCT: ${{ vars.AZ_STORAGE_ACCOUNT }}
-          SAS: ${{ secrets.AZ_SAS }}
+          ACCT: ${{ vars.AZ_STORAGE_ACCOUNT1 }}
+          SAS: ${{ secrets.AZ_SAS1 }}
         run: |
           echo "## firmware 컨테이너" >> "$GITHUB_STEP_SUMMARY"
           az storage blob list --container-name firmware \
