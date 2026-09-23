@@ -1,0 +1,20 @@
+name: Lab4 다른 레포 가져오기
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 내 레포 체크아웃
+        uses: actions/checkout@v7
+
+      - name: 공통 스크립트 레포 체크아웃
+        uses: actions/checkout@v7
+        with:
+          repository: skilleat-labs/shared-scripts   # ← 본인 것으로
+          path: shared  
+          token: ${{ secrets.SHARED_REPO_TOKEN }}                                    # ← 이 폴더로 받음
+
+      - name: 가져온 스크립트 실행
+        run: bash shared/scripts/version.sh
