@@ -1,0 +1,20 @@
+name: 도전 1-1 러너 정보
+on:
+  workflow_dispatch:
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 러너 정보를 Summary에 표로
+        run: |
+          {
+            echo "## 러너 정보"
+            echo "| 항목 | 값 |"
+            echo "|---|---|"
+            echo "| 러너 이름 | $RUNNER_NAME |"
+            echo "| OS | ${{ runner.os }} ($(uname -s) $(uname -m)) |"
+            echo "| CPU | $(nproc) core |"
+            echo "| 메모리 | $(free -h | awk 'NR==2{print $2}') |"
+            echo "| 디스크 여유 | $(df -h / | awk 'NR==2{print $4}') |"
+          } >> "$GITHUB_STEP_SUMMARY"
