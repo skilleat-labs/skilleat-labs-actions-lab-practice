@@ -1,4 +1,4 @@
-name: Lab3 outputs
+name: Lab6 self-hosted 테스트  
 on:
   workflow_dispatch:
 
